@@ -7,8 +7,8 @@ public class Principal {
 		Principal principal = new Principal();
 
 		principal.inicializa();
-
-
+		
+		
 	}
 
 	public void inicializa() {
@@ -21,13 +21,7 @@ public class Principal {
 		Transferencia t1 = new Transferencia(c1, c2, 100f);
 		t1.transfere();
 		
-		
-
-	
-		System.out.println(p1.getNome()+" - "+ c1.getSaldo());
-		System.out.println(p2.getNome()+" - "+ c2.getSaldo());
-		//System.out.println(t1.getContaOrigem() +" - "+ t1.getContaDestino());
-
-	}
+		System.out.println(p1.getNome() + " transferiu " + " para a conta do " + p2.getNome()+ " um valor de " +t1.getValor()+" ficando com salde de R$"+ c1.getSaldo());
+		}
 
 }

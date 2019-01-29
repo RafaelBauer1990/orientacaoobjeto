@@ -5,13 +5,13 @@ public class Transferencia {
 	private Conta contaOrigem;
 	private Conta contaDestino;
 	private Float valor;
-	private Float saldoOrigemFinal;
-	private Float saldoDestinoFinal;
+
 	
-	public Transferencia(Conta contaOrigem, Conta contaDestino, Float valor, Float saldoOrigemFinal, Float saldoDestinoFinal) {
+	public Transferencia(Conta contaOrigem, Conta contaDestino, Float valor) {
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
+		
 		
 		
 	}
@@ -41,10 +41,8 @@ public class Transferencia {
 	
 	public void transfere() {
 		
-		Float saldoOrigem = this.contaOrigem.getSaldo();
-		Float saldoDestino = this.contaDestino.getSaldo();
-		Float saldoOrigemFinal = saldoOrigem - this.valor;
-		Float saldoDestinoFinal = saldoDestino + this.valor;
-
+		contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+		contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+		
 	}
 }

@@ -1,5 +1,6 @@
 package com.target.treinamento.orientacaoobjeto.dominio.banco;
 
+
 public class Conta {
 	
 	private Integer numConta;
@@ -27,6 +28,18 @@ public class Conta {
 	public void setSaldo(Float saldo) {
 		this.saldo = saldo;
 	}
+
+	@Override
+	public String toString(){
+	       return  pessoa + "Teste" + saldo;
+	   }
 	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+	    Conta novaConta = new Conta(this.numConta, this.saldo,(Pessoa) this.pessoa.clone());
+	     
+		return novaConta;
+	}
+
 
 }
