@@ -1,8 +1,6 @@
 package com.target.treinamento.orientacaoobjeto.dominio.banco;
 
-public interface CartaoDeCredito {
+public enum Taxas {
 	
-	void debito();
-	void credito();
 
 }
