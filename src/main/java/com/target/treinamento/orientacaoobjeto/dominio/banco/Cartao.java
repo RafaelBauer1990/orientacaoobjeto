@@ -2,7 +2,7 @@ package com.target.treinamento.orientacaoobjeto.dominio.banco;
 
 public interface Cartao {
 	
-	void debito(Double valor);
-	void credito(Double valor);
+	void debito(String valorPgto);
+	void credito(String valor);
 
 }
