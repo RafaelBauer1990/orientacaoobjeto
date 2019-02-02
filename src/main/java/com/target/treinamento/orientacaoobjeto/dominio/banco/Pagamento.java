@@ -1,104 +1,90 @@
 package com.target.treinamento.orientacaoobjeto.dominio.banco;
 
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pagamento {
 
 	private String bandeira;
-	private String operacao;
-	private String valorPgto;
+	private Integer operacao;
+	private Double valorPgto;
 
 	Cartao visa = new Visa();
 	Cartao mastercard = new Mastercard();
 
 
-	void incializa() {
+	void incializa() throws IOException {
 
-		lerArquivo();
-
-		/*
-		System.out.println("Informe a bandeira");
-		System.out.println("[1] - Visa");
-		System.out.println("[2] - Mastercard");
-		lerBandeira();
-		System.out.println("Informe a operação");
-		System.out.println("[1] - Débito");
-		System.out.println("[2] - Crédito");
-		lerOperacao();
-		System.out.println("Informe o valor");
-		lerValor();*/
+		List<String> list = lerArquivo();
+		System.out.println(list);
+		List<Transacao> transacoes = new ArrayList<Transacao>();
 
 
+		for (String linha : list) {
 
-}
+			String[] linhaQuebrada = linha.split(";");
 
-	public void  lerArquivo() {
-		BufferedReader buffer = null;
+			Transacao transacao = new Transacao();
 
-		try {
-			buffer = new BufferedReader( new FileReader("C:\\Users\\RAFAEL BAUER\\Documents\\transacoes.txt"));
-		} catch (FileNotFoundException e1) {
+			transacao.setBandeira(linhaQuebrada[0]);
+			transacao.setOperacao(Integer.valueOf(linhaQuebrada[1]));
+			transacao.setValor(Double.valueOf(linhaQuebrada[2]));
+			transacao.setNomeCliente(linhaQuebrada[3]);
 
-			e1.printStackTrace();
+			transacoes.add(transacao);
 		}
 
+		processaTransacao(transacoes);
+		
+
+	}
 
 
+	private void processaTransacao(List<Transacao> transacoes) {
+		for (Transacao transacao : transacoes) {
+			Taxas meuEnum = Taxas.valueOf(transacao.getBandeira().toUpperCase());
 
-		while (!buffer.equals(null)) {	
-			String linha = null;
+			Cartao cartao = meuEnum.getCartao();
 
-			try {
-				linha = buffer.readLine();
-			} catch (IOException e) {
-				System.out.println("Acabou");
-				e.printStackTrace();
+			if(transacao.getOperacao() == 1) {
+				cartao.debito(valorPgto);
+			} else if (transacao.getOperacao() == 2) {
+				cartao.credito(valorPgto);
 			}
-			String[] linhaManipulada = linha.split(";");
-			this.bandeira = linhaManipulada[0];
-			this.operacao = linhaManipulada[1]; 
-			this.valorPgto = linhaManipulada[2]; 
 			
-			if (bandeira.equals("VISA") && operacao.equals("1")) {
-				visa.debito(valorPgto);
-			} else if(bandeira.equals("VISA") && operacao.equals("2")) {
-				visa.credito(valorPgto);
-			} else if  (bandeira.equals("MASTERCARD") && operacao.equals("1")) {
-				mastercard.debito(valorPgto);
-			}else if  (bandeira.equals("MASTERCARD") && operacao.equals("2")) {
-				mastercard.credito(valorPgto);
-			}
+			
 		}
 
 	}
 
 
+	private List<String> lerArquivo() throws IOException {
+		InputStream inputStream = new FileInputStream("C:\\Users\\aluno03sala04\\workspace-rafael\\orientacaoobjeto-rdanieli\\src\\main\\resources\\transacoes.txt");
+
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+		List<String> minhasLinhas = new ArrayList<String>();
+
+		while(true) {
+			String linha = bufferedReader.readLine();
+			if(linha != null) {
+				minhasLinhas.add(linha);	
+			} else {
+				break;
+			}
+		}
+
+		return minhasLinhas;
 
 
-
+	}
 }
-/*
-	private Double lerValor() {
-		Scanner scan = new Scanner(System.in);
-		return valorPgto = scan.nextDouble();
 
-	}
-
-	private Integer lerOperacao() {
-		Scanner scan = new Scanner(System.in);
-		return operacao = scan.nextInt();
-
-	}
-
-	private Integer lerBandeira() {
-		Scanner scan = new Scanner(System.in);
-		return bandeira = scan.nextInt();
-
-	}*/
 
 
