@@ -8,38 +8,59 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pagamento {
-	
-	String bandeira;
-	Integer operacao;
-	String nomeCliente;
-	Double valor;
-	
+
+	private String bandeira;
+	private Integer operacao;
+	private String nomeCliente;
+	private Double valor;
+
 	public void inicializa() throws IOException{
 		
-	
-		FileReader arq = new FileReader("C:\\Users\\aluno03sala04\\workspace-rafael\\orientacaoobjeto\\arquivos\\transacoes.txt");
-		BufferedReader arqLido = new BufferedReader(arq);
-		
-		String linha = arqLido.readLine();
-		System.out.println(linha);
-		
-		while (linha != null) {
-			
-			
-			String[] linhaQuebrada = linha.split(";");
-			String linha = arqLido.readLine();
-			
-			System.out.println(linhaQuebrada);
-				
-			
-		} 
-
-		
+		lerArquivo();
 	}
+
 	
 	
+
+	private void lerArquivo() throws IOException {
+
+
+		FileReader arq = new FileReader("C:\\Users\\RAFAEL BAUER\\eclipse-workspace\\MeuProjeto\\resouces\\arquivoInicial.txt");
+		BufferedReader arqLido = new BufferedReader(arq);
+
+		while (true) {
+
+			List<String> listaPagamentos = new ArrayList<String>();
+			String linha = arqLido.readLine();
+			if (linha !=null) {
+				String[] linhaQuebrada = linha.split(";");
+				
+
+				this.bandeira = linhaQuebrada[0].toUpperCase();
+				this.operacao = Integer.valueOf(linhaQuebrada[1]);
+				this.valor = Double.valueOf(linhaQuebrada[2]);
+				this.nomeCliente = linhaQuebrada[3].toUpperCase();
+				System.out.println(linhaQuebrada);
+				//System.out.println("[bandeira: "  getBandeira() + " operação: " + getOperacao()+ " valor: " + getValor() + " Cliente: " + getNomeCliente()+"]");
+				listaPagamentos.addAll(linhaQuebrada);
+				//processaPagamento();
+			} else {
+				break;
+			}
+							
+			}
+		
+		}
+
+
+	//private void processaPagamento() {
+		//}
+		
+
 	public String getBandeira() {
 		return bandeira;
 	}
