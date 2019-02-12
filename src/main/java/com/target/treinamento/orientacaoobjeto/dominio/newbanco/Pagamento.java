@@ -19,12 +19,12 @@ public class Pagamento {
 	private Double valor;
 
 	public void inicializa() throws IOException{
-		
+
 		lerArquivo();
 	}
 
-	
-	
+
+
 
 	private void lerArquivo() throws IOException {
 
@@ -38,7 +38,7 @@ public class Pagamento {
 			String linha = arqLido.readLine();
 			if (linha !=null) {
 				String[] linhaQuebrada = linha.split(";");
-				
+
 
 				this.bandeira = linhaQuebrada[0].toUpperCase();
 				this.operacao = Integer.valueOf(linhaQuebrada[1]);
@@ -46,20 +46,23 @@ public class Pagamento {
 				this.nomeCliente = linhaQuebrada[3].toUpperCase();
 				System.out.println(linhaQuebrada);
 				//System.out.println("[bandeira: "  getBandeira() + " operação: " + getOperacao()+ " valor: " + getValor() + " Cliente: " + getNomeCliente()+"]");
-				listaPagamentos.addAll(linhaQuebrada);
+				listaPagamentos.add(linhaQuebrada);
 				//processaPagamento();
 			} else {
 				break;
 			}
-							
-			}
-		
+
 		}
 
+	}
 
-	//private void processaPagamento() {
-		//}
+
+	private void processaPagamento() {
 		
+		
+
+	}
+
 
 	public String getBandeira() {
 		return bandeira;

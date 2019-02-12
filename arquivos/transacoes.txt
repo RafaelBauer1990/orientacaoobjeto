@@ -1,6 +1,6 @@
-visa;1;25,56;maria antonieta
-visa;1;25,56;maria antonieta
-visa;1;25,56;maria antonieta
-visa;1;25,56;maria antonieta
-visa;1;25,56;maria antonieta
-visa;1;25,56;maria antonieta
+visa;1;25.56;maria joao
+visa;1;66.35;Joao maria
+visa;1;88.45;Pedro sobrenome
+visa;1;58.99;Paulo silva
+visa;1;100.50;Claudia santos
+visa;1;3.55;Moises padilha
