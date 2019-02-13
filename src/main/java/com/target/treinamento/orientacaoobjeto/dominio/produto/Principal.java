@@ -14,26 +14,20 @@ public class Principal {
 	}
 
 	private static void inicializa() {
-		
-		
 
 		carregaProdutos();
+		
 		
 		
 	}
 	
 
 	private static void carregaProdutos() {
-
 		
-
-		Produto prod1 = new Produto("Açucar", "Alimento", 5.50, "IMP34");
-		Produto prod2 = new Produto("Liquidificador", "Eletrodomestico", 170.50, "SEC1413");
-		Produto prod3 = new Produto("Netflix", "Entretenimento", 17.50, "NE001");
-
-		produtos.add(prod1);
-		produtos.add(prod2);
-		produtos.add(prod3);
+		produtos.add(new Produto("Netflix", "Entretenimento", 17.50, "NE001"));
+		produtos.add(new Produto("Liquidificador", "Eletrodoméstico", 285.50, "LI055"));
+		produtos.add(new Produto("Arroz", "Alimento", 285.50, "AR023"));
+		
 		
 	}
 
