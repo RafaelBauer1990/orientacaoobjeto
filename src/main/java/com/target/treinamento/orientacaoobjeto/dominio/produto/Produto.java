@@ -1,20 +1,26 @@
 package com.target.treinamento.orientacaoobjeto.dominio.produto;
 
-public class Produto extends Codigo{
+public class Produto {
 	
 	private String nome;
 	private String tipo;
-	private Double preco;
-	private String codigo;
-	
+	private Codigo codigo;
 
 
-
-
-	public Produto(String nome, String tipo, Double preco,String codigo) {
+	public Produto(String nome, String tipo, Codigo codigo) {
+		super();
 		this.nome = nome;
 		this.tipo = tipo;
-		this.preco = preco;
+		this.codigo = codigo;
+	}
+
+
+	public Codigo<?> getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(Codigo<?> codigo) {
 		this.codigo = codigo;
 	}
 
@@ -39,13 +45,12 @@ public class Produto extends Codigo{
 	}
 
 
-	public Double getPreco() {
-		return preco;
+	// sempre que solicitar o objeto ele será retornado como string
+	@Override
+	public String toString() {
+		return "Produto [nome=" + nome + ", tipo=" + tipo + ", codigo=" + codigo + "]";
 	}
-
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
+	
+	
 
 }

@@ -1,15 +1,30 @@
 package com.target.treinamento.orientacaoobjeto.dominio.produto;
 
-public class Codigo {
+public class Codigo<T> {
 	
-	private String codigo;
+	private T id;
 
-	public String getCodigo() {
-		return codigo;
+	public T getId() {
+		return id;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	} 
+	public void setId(T id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Codigo [id=" + id + "]";
+	}
+
+	public Codigo(T id) {
+		this.id = id;
+	}
+	
+	public Codigo() {
+		
+	}
+	
+	
 
 }
